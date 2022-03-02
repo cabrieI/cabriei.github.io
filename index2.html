@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>window.onload = function() {
+        var currentColor = 'red';
+        setInterval(function() {
+            document.body.style.backgroundColor = currentColor;
+            switch (currentColor){
+                case 'red': currentColor='blue'
+                break;
+                 case 'blue': currentColor='yellow'
+                 break;
+                 case 'yellow': currentColor='red'
+                break;
+            }
+        }, 100);
+    };</script>
+</head>
+<body>
+  <p>que tal </p>
+</body>
+</html>
