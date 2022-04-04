@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <!--COPIADO DE https://pepperonipizza.neocities.org/ 
+    CREDITOS A SU AUTOR-->
+  <head>
+    <meta charset="UTF-8">
+    <title>pepperoni simulator</title>
+    <style>
+    img {
+      position: absolute;
+      user-drag: none; 
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    * { cursor: none; }
+    div {
+      
+      color: #FFF;
+      position: absolute;
+      left: 600px;
+      width: 500px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 30px;
+      font-family: Calibri;
+    }
+    #oliveB {
+      background-color: #433;
+      top: 100px;
+    }
+    #pepperoniB {
+      background-color: #A11;
+      top: 50px;
+    }
+    #mushroomB {
+      background-color: #865;
+      top: 150px;
+    }
+    #pepperRB {
+      width:167px;
+      background-color: #D11;
+      top: 200px;
+      left: 600px;
+    }
+    #pepperGB {
+      width:166px;
+      background-color: #1C1;
+      top: 200px;
+      left: 767px;
+    }
+    #pepperYB {
+      width:167px;
+      background-color: #CA0;
+      top: 200px;
+      left: 933px;
+    }
+    #sausageB {
+      background-color: #953;
+      top: 250px;
+    }
+    #queso {
+        background-color: rgb(223, 226, 21);
+      top: 300px;
+    }
+    #pinya{
+        background-color: rgb(224, 222, 100);
+      top: 350px;
+    }
+    </style>
+  </head>
+  <body>
+  <script>
+  document.body.onload = function(){
+b = document.getElementById("ball");
+b.style.top = "100px";
+var currentTopping = "pepperoni";
+var newId = -1;
+var counts = [];
+var mX = 0;
+var mY = 0;
+var id = 0;
+var cX = document.getElementById("pizza").width/2;
+var cY = document.getElementById("pizza").height/2;
+
+var hand = document.getElementById("hand");
+hand.style.zIndex = 1000;
+b.style.zIndex = 999;
+hand.style.left = "-50px";
+hand.style.top = "-20px";
+hand.style.transform = "rotate(50deg)";
+
+var radius = 220;
+document.addEventListener('mousemove', onMouseUpdate, false);
+document.addEventListener('click', click, false);
+
+
+function click(e){
+    var inPizza = false;
+  if((e.pageX-cX)*(e.pageX-cX)+(e.pageY-cY)*(e.pageY-cY) <= radius*radius){
+      inPizza = true;
+  }
+  if (inPizza){
+  	rotateH();
+    var i = document.createElement("IMG");
+    i.setAttribute("src", currentTopping + ".png");
+    i.setAttribute("width", "50");
+    i.setAttribute("height", "50");
+    i.style.left = e.pageX-(b.width/2) + "px";
+    i.style.top = e.pageY-(b.height/2) + "px";
+    
+    newId++;
+    i.setAttribute("id", newId);
+    document.body.appendChild(i);
+    i.style.zIndex = 0;
+    goTo(e.pageX-(b.width/2),e.pageY-(b.height/2), newId);
+    
+  }
+  else if(e.pageX > 600 && e.pageY > 50 && e.pageX < 1100){
+    if (e.pageY < 50 + 50*1){
+      changeTopping("pepperoni");
+    }
+    else if (e.pageY < 50 + 50*2){
+      changeTopping("olive");
+    }
+    else if (e.pageY < 50 + 50*3){
+      changeTopping("mushroom");
+    }
+    else if (e.pageY < 50 + 50*4){
+      if (e.pageX < 600 + 167) {
+        changeTopping("pepperR");
+      }
+      else if (e.pageX < 600 + 333) {
+        changeTopping("pepperG");
+      }
+      else if (e.pageX < 600 + 500) {
+        changeTopping("pepperY");
+      }
+    }
+    else if (e.pageY < 50 + 50*5){
+      changeTopping("sausage");
+    }
+  
+    else if (e.pageY < 50 + 50*6){
+      changeTopping("queso");
+  }
+
+    else if (e.pageY < 50 + 50*7){
+      changeTopping("pinya"); 
+}
+  }
+}
+
+function onMouseUpdate(e){
+    mX = e.pageX;
+  	mY = e.pageY;
+  	b.style.left = mX-(b.width/2) + "px";
+    b.style.top = mY-(b.height/2) +"px";
+}
+function goTo(dX, dY, id){
+  m = document.getElementById(id);
+  //m.style.left = dX + "px";
+  //m.style.top = dY + "px";
+  counts[counts.length] = 0;
+  setInterval(function(){change(dX, dY, id, id);}, 5);
+  
+  console.log(counts);
+}
+function rotateH(){
+	hand.style.transform = "rotate(40deg)";
+	setTimeout(function(){
+  hand.style.transform = "rotate(0deg)";
+  setTimeout(function(){
+  hand.style.transform = "rotate(0deg)";
+  setTimeout(function(){
+  hand.style.transform = "rotate(20deg)";
+  setTimeout(function(){
+  hand.style.transform = "rotate(35deg)";
+  setTimeout(function(){
+  hand.style.transform = "rotate(50deg)";
+  }, 50);
+  }, 50);
+  }, 50);
+  }, 50);
+  }, 50);
+  
+	
+}
+function change(dX, dY, id, c){
+	if(counts[c] < 100){
+  	 m = document.getElementById(id);
+  	 counts[c]++;
+     m.style.left = (1/100)*counts[c]*(dX) + "px";
+  	 m.style.top =  (1/100)*counts[c]*(dY) + "px";
+  }
+}
+function changeTopping(topping){
+  currentTopping = topping;
+  b.src=topping + ".png";
+}
+}
+  </script>
+  
+    <img src = "pizza.png" width= "620" height = "500" id = "pizza">
+    <img src = "pepperoni.png" height = "50px" width = "50px" id = "ball">
+    <img src = "hand.png" height = "100" width = "150" id = "hand">
+    <div id = "pepperoniB">Pepperoni</div>
+    <div id = "oliveB">Olive</div>
+    <div id = "mushroomB">Mushroom</div>
+    <div id = "pepperRB">Pepper</div>
+    <div id = "pepperGB">Pepper</div>
+    <div id = "pepperYB">Pepper</div>
+    <div id = "sausageB">Sausage</div>
+    <div id = "queso">Cheese</div>
+    <div id = "pinya">Pineapple</div>
+  </body>
+</html>
