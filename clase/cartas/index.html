@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="xel-theme" content="node_modules/xel/themes/adwaita.css">
+    <meta name="xel-accent-color" content="blue">
+    <meta name="xel-iconsets" content="node_modules/xel/iconsets/material.svg">
+
+    <link rel="stylesheet" href="./css/photon.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Apuestas</title>
+    <script src="node_modules/xel/xel.js" type="module"></script>
+
+</head>
+
+<body>
+
+    <div class="window">
+        <div class="window-content">
+            <div class="pane-group">
+                <div class="pane-sm sidebar">
+<div class="inl">
+    <span  >Crédito: </span>
+        <span id="cred">1000</span>
+    </div>
+
+<hr>
+<h6>Apuesta</h6>
+<input type="number" id="inp" class="form-control" placeholder="Apuesta">
+<select name="palo" id="sel" class="form-control">
+    <option value="null"></option>
+    <option value="1">Espadas</option>
+    <option value="2">Bastos</option>
+    <option value="3">Oros</option>
+    <option value="4">Copas</option>
+</select>
+<hr>
+<button id="btnApostar"  class="btn btn-large btn-positive">Apostar</button>
+<button id="btnReset"  class="btn btn-large btn-positive">Reset</button>
+
+                </div>
+                <div class="pane">
+
+   <!--
+<button class="btncarta" id="btn1"></button>
+<button class="btncarta" id="btn2"></button>
+<br>
+<button class="btncarta" id="btn3"></button>
+
+<button class="btncarta" id="btn4"></button> <br>
+<button class="btncarta" id="btn5"></button>
+<button class="btncarta" id="btn6"></button>
+-->                 
+<div class="wrapper">
+    <img src="images/dorso.png" id="i1">
+    <img src="images/dorso.png" id="i2">
+    <img src="images/dorso.png" id="i3">
+    <img src="images/dorso.png" id="i4">
+    <img src="images/dorso.png" id="i5">
+    <img src="images/dorso.png" id="i6">
+
+
+</div>
+
+
+</div>                
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <x-notification id='notification' timeout="3000"></x-notification>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+h6{
+    margin-left: 5%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+}
+
+
+.inl{
+    margin-top: 5%;
+    margin-left: 5%;
+    display:inline-flex;
+    font-size: large;
+    align-content: center;
+}
+p{
+    font-size: 32px;
+}
+hr{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    
+}
+input{
+    margin-bottom: 5%;
+}
+
+/*
+.pane{
+    border-color: black;
+    border-width: 3px;
+    background-color: gray;
+}
+.btncarta{
+    width: 125px;
+    height: 200px;
+    margin-left: 5%;
+   padding-left: 55px;
+    border-radius: 5%;
+    background-image: url(../images/dorso.png);
+}*/
+.wrapper {
+    border: 2px solid #5c5a5a;
+    border-radius: 5px;
+    background-color: lightgrey;
+    padding: 12pt;
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     width: 400px;
+    }
+    .wrapper > img {
+    border: 2px solid #8a8585;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 1em;
+    color: #0e0d0d;
+    }
+    
