@@ -29,11 +29,31 @@ html,body{
   }
 </style>
 <script>window.onload = function() {
+
 	var currentColor = 'red';
 	setInterval(function() {
 		document.body.style.backgroundColor = currentColor;
 		currentColor = currentColor === 'red' ? 'blue' : 'red';
 	}, 100);
+  fetch('visitas.txt')
+    .then(response => response.text())
+    .then(visitas => {
+      // Convertir el contenido del archivo de texto a un entero
+      let numVisitas = parseInt(visitas, 10);
+
+      // Aumentar el número de visitas en uno
+      numVisitas++;
+
+      // Escribir el nuevo número de visitas en el archivo de texto
+      fetch('visitas.txt', {
+        method: 'PUT',
+        body: numVisitas
+      });
+
+      // Mostrar el número de visitas en la página web
+      let spanVisitas = document.getElementById('num-visitas');
+      spanVisitas.innerText = numVisitas;
+    });
 };</script>
 
 </head>
@@ -94,28 +114,7 @@ html,body{
   <script>
     //llevo calentandome la cabeza con esto puto javascript q no te deja scribir en ficheros y eesto creo q solo funciona en local
  // Función que se ejecuta al cargar la página
-window.onload = function() {
-  // Leer el contenido del archivo de texto que contiene el número de visitas
-  fetch('visitas.txt')
-    .then(response => response.text())
-    .then(visitas => {
-      // Convertir el contenido del archivo de texto a un entero
-      let numVisitas = parseInt(visitas, 10);
 
-      // Aumentar el número de visitas en uno
-      numVisitas++;
-
-      // Escribir el nuevo número de visitas en el archivo de texto
-      fetch('visitas.txt', {
-        method: 'PUT',
-        body: numVisitas
-      });
-
-      // Mostrar el número de visitas en la página web
-      let spanVisitas = document.getElementById('num-visitas');
-      spanVisitas.innerText = numVisitas;
-    });
-};
   </script>
 
 </body>
