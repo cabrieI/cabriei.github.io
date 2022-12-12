@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+  
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cabriel</title>
-    <link rel="stylesheet" href="style.css">
+   <!--x <link rel="stylesheet" href="style.css">-->
 <style>
 html,body{
   margin: 0%;
@@ -83,30 +82,41 @@ html,body{
 	<h6>cosas de clase!!!!!!!!!!</h6>
 	<a href="./clase/cartas/index.html ">juego de apuestasssss</a>
 	<a href="./clase/index.html ">juego del ahorcado</a>-->
-
+ 
   <h1>SITIO WEB DE GABRIEL</h1>
   <h3>bienvenido</h3>
     <hr>
     <main>
-      
-      <div class="website-counter"></div>
+     
+      <div class="website-counter"> <span id="num-visitas"></span> </div>
       <p align="center">VISITANTES</p>
     </main>
   <script>
     //llevo calentandome la cabeza con esto puto javascript q no te deja scribir en ficheros y eesto creo q solo funciona en local
-  var counterContainer = document.querySelector(".website-counter");
-var resetButton = document.querySelector("#reset");
-var visitCount = localStorage.getItem("page_view");
+ // Función que se ejecuta al cargar la página
+window.onload = function() {
+  // Leer el contenido del archivo de texto que contiene el número de visitas
+  fetch('visitas.txt')
+    .then(response => response.text())
+    .then(visitas => {
+      // Convertir el contenido del archivo de texto a un entero
+      let numVisitas = parseInt(visitas, 10);
 
-// Check if page_view entry is present
-if (visitCount) {
-  visitCount = Number(visitCount) + 1;
-  localStorage.setItem("page_view", visitCount);
-} else {
-  visitCount = 1;
-  localStorage.setItem("page_view", 1);
-}
-counterContainer.innerHTML = visitCount;
+      // Aumentar el número de visitas en uno
+      numVisitas++;
+
+      // Escribir el nuevo número de visitas en el archivo de texto
+      fetch('visitas.txt', {
+        method: 'PUT',
+        body: numVisitas
+      });
+
+      // Mostrar el número de visitas en la página web
+      let spanVisitas = document.getElementById('num-visitas');
+      spanVisitas.innerText = numVisitas;
+    });
+};
   </script>
+
 </body>
 </html>
