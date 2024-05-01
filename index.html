@@ -35,26 +35,7 @@ html,body{
 		document.body.style.backgroundColor = currentColor;
 		currentColor = currentColor === 'red' ? 'blue' : 'red';
 	}, 100);
-  fetch('visitas.txt')
-    .then(response => response.text())
-    .then(visitas => {
-      // Convertir el contenido del archivo de texto a un entero
-      let numVisitas = parseInt(visitas, 10);
-
-      // Aumentar el número de visitas en uno
-      numVisitas++;
-
-      // Escribir el nuevo número de visitas en el archivo de texto
-      fetch('visitas.txt', {
-        method: 'PUT',
-        body: numVisitas
-      });
-
-      // Mostrar el número de visitas en la página web
-      let spanVisitas = document.getElementById('num-visitas');
-      spanVisitas.innerText = numVisitas;
-    });
-};</script>
+ </script>
 
 </head>
 <body>
@@ -105,17 +86,9 @@ html,body{
  
   <h1>SITIO WEB DE GABRIEL</h1>
   <h3>bienvenido</h3>
-    <hr>
-    <main>
-     
-      <div class="website-counter"> <span id="num-visitas"></span> </div>
-      <p align="center">VISITANTES</p>
-    </main>
-  <script>
-    //llevo calentandome la cabeza con esto puto javascript q no te deja scribir en ficheros y eesto creo q solo funciona en local
- // Función que se ejecuta al cargar la página
+ 
+ 
 
-  </script>
 
 </body>
 </html>
